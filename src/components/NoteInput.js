@@ -29,16 +29,17 @@ class NoteInput extends React.Component {
     });
   };
 
-  onSubmitEventHAndler = (event) => {
+  onSubmitHandler = (event) => {
     event.preventDefault();
-    this.props.addnote(this.state);
+    this.props.addNote(this.state);
+    this.setState({ title: '', body: '' });
   };
 
   render() {
     return (
       <div className="note-input">
         <h2>Buat Catatan</h2>
-        <form onSubmit={this.onSubmitEventHAndler}>
+        <form onSubmit={this.onSubmitHandler}>
           <input
             type="text"
             placeholder="tuliskan judul disini..."
@@ -50,10 +51,8 @@ class NoteInput extends React.Component {
             rows="10"
             onChange={this.onBodyChangeHandler}
             placeholder="Tuliskan catatan disini..."
-            value=""
-          >
-            {this.state.body}
-          </textarea>
+            value={this.state.body}
+          ></textarea>
           <button type="submit">Buat</button>
         </form>
       </div>

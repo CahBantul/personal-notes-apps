@@ -46,6 +46,22 @@ export default class NoteApp extends Component {
     this.setState({ notes: unselectNote });
   };
 
+  onAddNoteHandler = ({ title, body }) => {
+    this.setState((prevState) => {
+      return {
+        notes: [
+          ...prevState.notes,
+          {
+            id: +new Date(),
+            title,
+            body,
+            archived: false,
+          },
+        ],
+      };
+    });
+  };
+
   render() {
     const notes = this.state.notes;
     const activeNote = notes.filter((note) => note.archived === false);
@@ -54,7 +70,7 @@ export default class NoteApp extends Component {
       <>
         <NoteAppHeader />
         <div className="note-app__body">
-          <NoteInput />
+          <NoteInput addNote={this.onAddNoteHandler} />
           <NoteList
             notes={activeNote}
             itemTitle="Catatan Aktif"
