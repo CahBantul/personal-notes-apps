@@ -92,4 +92,4 @@ class NoteApp extends Component {
   }
 }
 
-export default NoteApp
+export default NoteApp;

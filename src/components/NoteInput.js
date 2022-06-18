@@ -10,6 +10,7 @@ class NoteInput extends React.Component {
       body: '',
       charLimit: 50,
       maxChar: 50,
+      message: '',
     };
   }
 
@@ -35,13 +36,22 @@ class NoteInput extends React.Component {
   onSubmitHandler = (event) => {
     event.preventDefault();
     this.props.addNote(this.state);
-    this.setState({ title: '', body: '' });
+    this.setState({
+      title: '',
+      body: '',
+      charLimit: 50,
+      message: 'catatan berhasil ditambahkan',
+    });
+    setTimeout(() => {
+      this.setState({ message: '' });
+    }, 2000);
   };
 
   render() {
     return (
       <div className="note-input">
         <h2>Buat Catatan</h2>
+        <p className="note-input__alert">{this.state.message}</p>
         <form onSubmit={this.onSubmitHandler}>
           <p className="note-input__title__char-limit">
             Sisa karakter: {this.state.charLimit}
