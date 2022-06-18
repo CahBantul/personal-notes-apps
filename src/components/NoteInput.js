@@ -8,6 +8,8 @@ class NoteInput extends React.Component {
     this.state = {
       title: '',
       body: '',
+      charLimit: 50,
+      maxChar: 50,
     };
   }
 
@@ -16,6 +18,7 @@ class NoteInput extends React.Component {
       return {
         ...prevState,
         title: event.target.value,
+        charLimit: this.state.maxChar - event.target.value.length,
       };
     });
   };
@@ -40,6 +43,9 @@ class NoteInput extends React.Component {
       <div className="note-input">
         <h2>Buat Catatan</h2>
         <form onSubmit={this.onSubmitHandler}>
+          <p className="note-input__title__char-limit">
+            Sisa karakter: {this.state.charLimit}
+          </p>
           <input
             type="text"
             placeholder="tuliskan judul disini..."
