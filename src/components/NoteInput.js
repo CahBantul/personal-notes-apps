@@ -50,6 +50,7 @@ class NoteInput extends React.Component {
             rows="10"
             onChange={this.onBodyChangeHandler}
             placeholder="Tuliskan catatan disini..."
+            value=""
           >
             {this.state.body}
           </textarea>
