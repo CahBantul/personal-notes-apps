@@ -4,12 +4,20 @@ import NoteItemDate from './NoteItemDate';
 import NoteItemBody from './NoteItemBody';
 import NoteItemAction from './NoteItemAction';
 
-function NoteItem({ title, id, date, onDelete, onArchive, body, buttonTitle }) {
+function NoteItem({
+  title,
+  id,
+  createdAt,
+  onDelete,
+  onArchive,
+  body,
+  buttonTitle,
+}) {
   return (
     <div className="note-item">
       <div className="note-item__content">
         <NoteItemTitle title={title} />
-        <NoteItemDate date={date} />
+        <NoteItemDate date={createdAt} />
         <NoteItemBody body={body} />
       </div>
       <NoteItemAction

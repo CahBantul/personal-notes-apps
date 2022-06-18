@@ -56,6 +56,7 @@ export default class NoteApp extends Component {
             title,
             body,
             archived: false,
+            createdAt: new Date(),
           },
         ],
       };
