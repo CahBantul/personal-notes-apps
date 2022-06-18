@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { getInitialData } from '../utils';
 import NoteAppHeader from './NoteAppHeader';
 import NoteInput from './NoteInput';
 import NoteList from './NoteList';
 
-class NoteApp extends Component {
+class NoteApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       notes: getInitialData(),
+      publishedNote: getInitialData(),
     };
   }
 
@@ -24,7 +25,7 @@ class NoteApp extends Component {
       archived: true,
     });
 
-    this.setState({ notes: unselectNote });
+    this.setState({ notes: unselectNote, publishedNote: unselectNote });
   };
   onPublishHandler = (id) => {
     const selectedNote = this.state.notes.filter((note) => note.id === id);
@@ -38,12 +39,12 @@ class NoteApp extends Component {
       archived: false,
     });
 
-    this.setState({ notes: unselectNote });
+    this.setState({ notes: unselectNote, publishedNote: unselectNote });
   };
 
   onDeleteHandler = (id) => {
     const unselectNote = this.state.notes.filter((note) => note.id !== id);
-    this.setState({ notes: unselectNote });
+    this.setState({ notes: unselectNote, publishedNote: unselectNote });
   };
 
   onAddNoteHandler = ({ title, body }) => {
@@ -59,17 +60,42 @@ class NoteApp extends Component {
             createdAt: new Date(),
           },
         ],
+        publishedNote: [
+          ...prevState.publishedNote,
+          {
+            id: +new Date(),
+            title,
+            body,
+            archived: false,
+            createdAt: new Date(),
+          },
+        ],
       };
     });
   };
 
+  onSearchHandler = (title) => {
+    if (title.length === 0) {
+      return this.setState({ publishedNote: this.state.notes });
+    }
+
+    const filteredNotes = this.state.notes.filter((note) => {
+      return note.title.toLowerCase().includes(title.toLowerCase());
+    });
+
+    this.setState({ publishedNote: filteredNotes });
+  };
+
   render() {
-    const notes = this.state.notes;
-    const activeNote = notes.filter((note) => note.archived === false);
-    const archivedNote = notes.filter((note) => note.archived === true);
+    const activeNote = this.state.publishedNote.filter(
+      (note) => note.archived === false
+    );
+    const archivedNote = this.state.publishedNote.filter(
+      (note) => note.archived === true
+    );
     return (
       <>
-        <NoteAppHeader />
+        <NoteAppHeader onSearch={this.onSearchHandler} />
         <div className="note-app__body">
           <NoteInput addNote={this.onAddNoteHandler} />
           <NoteList
