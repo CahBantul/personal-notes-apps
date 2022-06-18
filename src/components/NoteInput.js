@@ -51,6 +51,7 @@ class NoteInput extends React.Component {
             placeholder="tuliskan judul disini..."
             onChange={this.onTitleChangeHandler}
             value={this.state.title}
+            maxLength="50"
           />
           <textarea
             cols="30"
