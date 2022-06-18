@@ -26,6 +26,20 @@ export default class NoteApp extends Component {
 
     this.setState({ notes: unselectNote });
   };
+  onPublishHandler = (id) => {
+    const selectedNote = this.state.notes.filter((note) => note.id === id);
+    const unselectNote = this.state.notes.filter((note) => note.id !== id);
+
+    unselectNote.push({
+      id,
+      body: selectedNote[0].body,
+      title: selectedNote[0].title,
+      createdAt: selectedNote[0].createdAt,
+      archived: false,
+    });
+
+    this.setState({ notes: unselectNote });
+  };
 
   onDeleteHandler = (id) => {
     const unselectNote = this.state.notes.filter((note) => note.id !== id);
@@ -53,6 +67,7 @@ export default class NoteApp extends Component {
             itemTitle="Arsip"
             buttonTitle="Pindahkan"
             onDelete={this.onDeleteHandler}
+            onArchive={this.onPublishHandler}
           />
         </div>
       </>
