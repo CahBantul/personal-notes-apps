@@ -11,8 +11,8 @@ function NoteItem({ title, id, date, onDelete, onArchive, body }) {
         <NoteItemTitle title={title} />
         <NoteItemDate date={date} />
         <NoteItemBody body={body} />
-        <NoteItemAction id={id} onDelete={onDelete} onArchive={onArchive} />
       </div>
+      <NoteItemAction id={id} onDelete={onDelete} onArchive={onArchive} />
     </div>
   );
 }

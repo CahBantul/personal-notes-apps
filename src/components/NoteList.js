@@ -3,16 +3,21 @@ import NoteItem from './NoteItem';
 
 function NoteList({ notes, onDelete, onArchive }) {
   return (
-    <div className="note-list">
-      {notes.map((note) => (
-        <NoteItem
-          {...note}
-          onArchive={onArchive}
-          onDelete={onDelete}
-          key={note.id}
-        />
-      ))}
-    </div>
+    <>
+      <h2>Buat Catatan</h2>
+      <div className="notes-list">
+        {notes.map((note) => (
+          <>
+            <NoteItem
+              {...note}
+              onArchive={onArchive}
+              onDelete={onDelete}
+              key={note.id}
+            />
+          </>
+        ))}
+      </div>
+    </>
   );
 }
 
