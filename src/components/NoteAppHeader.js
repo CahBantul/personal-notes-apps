@@ -1,7 +1,7 @@
 import React from 'react';
 import NoteSearch from './NoteSearch';
 
-export default function NoteAppHeader() {
+function NoteAppHeader() {
   return (
     <div className="note-app__header">
       <h1>Notes</h1>
@@ -9,3 +9,5 @@ export default function NoteAppHeader() {
     </div>
   );
 }
+
+export default NoteAppHeader

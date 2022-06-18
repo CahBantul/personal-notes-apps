@@ -4,7 +4,7 @@ import NoteAppHeader from './NoteAppHeader';
 import NoteInput from './NoteInput';
 import NoteList from './NoteList';
 
-export default class NoteApp extends Component {
+class NoteApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -91,3 +91,5 @@ export default class NoteApp extends Component {
     );
   }
 }
+
+export default NoteApp
