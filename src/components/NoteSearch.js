@@ -1,18 +1,12 @@
 import React from 'react';
 
-class NoteSearch extends React.Component {
-  onSearchChangeHandler = (event) => {
-    this.props.onSearch(event.target.value);
-  };
-
-  render() {
-    return (
-      <input
-        placeholder="Cari Catatan..."
-        onChange={this.onSearchChangeHandler}
-      />
-    );
-  }
+function NoteSearch({ onSearch }) {
+  return (
+    <input
+      placeholder="Cari Catatan..."
+      onChange={(e) => onSearch(e.target.value)}
+    />
+  );
 }
 
 export default NoteSearch;

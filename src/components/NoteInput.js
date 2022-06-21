@@ -62,6 +62,7 @@ class NoteInput extends React.Component {
             onChange={this.onTitleChangeHandler}
             value={this.state.title}
             maxLength="50"
+            required
           />
           <textarea
             cols="30"
@@ -69,6 +70,7 @@ class NoteInput extends React.Component {
             onChange={this.onBodyChangeHandler}
             placeholder="Tuliskan catatan disini..."
             value={this.state.body}
+            required
           ></textarea>
           <button type="submit">Buat</button>
         </form>
